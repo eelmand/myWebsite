@@ -1,0 +1,25 @@
+body { 
+	margin-top: 50px;
+} 
+
+form {
+	width:300px;
+}
+
+@media(max-width: 480px) {
+	form {min-width:100%;}
+}
+
+.tab-content {
+	padding-top:15px;
+}
+
+td, th{
+	text-overflow:ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+table {
+	table-layout:fixed;
+}

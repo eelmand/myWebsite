@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Admin Timetrack</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="This is the beginnings of an admin page for a timetracker"/>
+	<meta http-equiv="author" content="David Eelman"/>
+
+	<link rel="icon" href="img/stopwatch.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.2/css/select.dataTables.min.css">
+	<link href="./css/common.css" type="text/css" rel="stylesheet">
+	<link href="./css/bootstrap-clockpicker.css" type="text/css" rel="stylesheet">
+	<link href="./css/datepicker.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<?php include 'php/top_menu.php';?>
+	</header>
+
+	<div class="container">
+		<h1 class="page-header text-center">Timetrack</h1>
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#overview">Overview</a></li>
+			<li><a data-toggle="tab" href="#projects">Projects</a></li>
+			<li><a data-toggle="tab" href="#users">Users</a></li>
+		</ul>
+		
+		<div class="tab-content">
+			<div id="overview" class="tab-pane fade in active">
+				<table id="admin_overview" class="table table-bordered table-striped" cellspacing="0" cellpadding="0" width="100%">
+					<thead>
+						<tr>
+							<th style="display:none">Id</th>
+							<th>Date</th>
+							<th>Name</th>
+							<th>Project</th>
+							<th>Hours</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php include 'php/admin_overview.php';?>
+					</tbody>
+				</table>
+				<button id="button" class="btn btn-danger">Delete selected row</button>
+			</div>
+			<div id="projects" class="tab-pane fade">
+				<form  class="well" id="add-project" action="php/add_project.php"" method="post">
+					<div class="form-group">
+						<h4>Add Project</h4>
+						<input name="project-name" type="text" class="form-control" placeholder="Enter project name">
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-default btn-primary btn-block"><span class="glyphicon glyphicon-ok"></span> Add</button>
+					</div>
+				</form>
+				<form class="well" id="remove-project" action="php/remove_project.php" method="post">
+					<div class="form-group">
+						<h4>Remove Project</h4>
+						<label for="">Projects:</label>
+						<?php include 'php/projects.php';?>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+					</div>
+				</form>
+			</div>
+			<div id="users" class="tab-pane fade">
+				<form  class="well" id="add-user" action="php/add_user.php"" method="post">
+					<div class="form-group">
+						<h4>Add User</h4>
+						<input type="username" class="form-control" name="username" id="username" placeholder="Enter username">
+						<input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
+						<input type="checkbox" name="admin" value="Yes"> Admin
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-default btn-primary btn-block"><span class="glyphicon glyphicon-ok"></span> Add</button>
+					</div>
+				</form>
+				<form class="well" id="remove-user" action="php/remove_user.php"" method="post">
+					<div class="form-group">
+						<h4>Remove User</h4>
+						<label for="id1">Users: </label>
+						<?php include 'php/users.php';?>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.2.2/js/dataTables.select.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="js/timetrack_admin.js"></script>
+</body>
+
+</html>
